@@ -31,9 +31,17 @@ public class BallLauncher extends GraphicsProgram{
 	}
 	
 	public void mousePressed(MouseEvent e) {
-		GOval ball = makeBall(SIZE/2, e.getY());
+		double minDistance = 100;
+		for (GOval b : balls) {
+			if (Math.abs(b.getX() - SIZE/2) < minDistance) {
+				return; 
+			}
+		}
+
+		GOval ball = makeBall(SIZE / 2, e.getY());
 		add(ball);
 	}
+
 	
 	public GOval makeBall(double x, double y) {
 		GOval temp = new GOval(x-SIZE/2, y-SIZE/2, SIZE, SIZE);
